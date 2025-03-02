@@ -1,0 +1,9 @@
+
+:root{
+    --text-color:#ffff;
+    --font-size:21px;
+}
+.nav-text{
+    font-size: var(--font-size);
+    color: var(--text-color);
+}

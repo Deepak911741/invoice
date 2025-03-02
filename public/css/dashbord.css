@@ -1,0 +1,36 @@
+:root{
+    --parmary-color:#fff;
+    --secondry-color:#00ccff;
+    --attach-color:#383838;
+    --primary-color-shadow: 0 0 0 0.2rem #3b933f40;
+}
+
+
+.card-title{
+    color: var(--parmary-color);
+}
+
+.card-body-dashbord {
+    background-color: var(--secondry-color);
+    padding: 20px; 
+}
+
+.filter-serach-button{
+    background-color: var(--secondry-color);
+}
+
+.filter-search-button{
+    background-color: var(--secondry-color);
+    border: 1px solid #ddd;
+    padding: 8px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lora', serif;
+} */

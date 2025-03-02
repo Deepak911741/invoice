@@ -1,0 +1,67 @@
+.custom-indicators button {
+    background-color: gray;
+    width: 12px; 
+    height: 12px; 
+    border-radius: 50%;
+    /* opacity: 0.5;  */
+    margin: 0 5px; 
+}
+
+.carousel-indicators{
+    position: static;
+}
+
+.carousel-indicators [data-bs-target]{
+    width: 12px;
+    background-color: gray; 
+    height: 12px;
+    margin: 2px;
+}
+/* Style for carousel dots (inactive) */
+.custom-indicators button {
+    background-color: gray; 
+    width: 12px; 
+    height: 12px; 
+    border-radius: 50%;
+    opacity: 0.3; 
+    margin: 5px;
+    transition: opacity 0.3s ease; 
+}
+
+
+.custom-indicators button.active {
+    opacity: 1; 
+    background-color: darkgray; 
+}
+
+.custom-forgot-password {
+    color: red; 
+    text-align: right; 
+    text-decoration: none; 
+}
+
+.login-page-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; 
+}
+
+@media (max-width: 768px) {
+    .login-page-image {
+        justify-content: center;
+        align-items: center;
+        max-width: 250px; 
+    }
+}
+
+.sign-in-button{
+    padding: 15px 30px;
+    border: 0;
+    background: #007BFF;
+    box-shadow: 0px 4px 4px rgba(0, 123, 255, 0.25);
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
