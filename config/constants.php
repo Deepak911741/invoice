@@ -57,6 +57,7 @@ $constants = [
 
 	'PAGE_NOT_FOUND_URL' => $portfolio['BACKEND_SITE_URL'] . 'page-not-found',
 	
+	'USERS_URL' => $portfolio['BACKEND_SITE_URL'] . 'users',
 ];
 
 return array_merge($constants , $portfolio);

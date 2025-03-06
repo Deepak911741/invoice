@@ -5,7 +5,7 @@
 <main class="page-height bg-light-color">
 <div class="breadcrumb-wrapper d-flex border-bottom">
     <div>
-        <h1 class="mb-0 header-title" id="pageTitle">{{ trans('messages.dashboard') }}</h1>
+        <h1 class="mb-0 header-title" id="pageTitle">{{ $pageTitle }}</h1>
     </div>
 </div>
 <section class="inner-wrapper-common-sections main-listing-section py-3">

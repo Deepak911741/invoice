@@ -179,4 +179,8 @@ return [
 	'required-enter-field-validation' => "Please Enter :fieldName",
 	'required-select-field-validation' => "Please Select :fieldName",
 	'required-upload-field-validation' => "Please Upload :fieldName",
+
+	'users' => 'Users',
+	'add-user' => 'Add User',
+	'update-user' => 'Update User',
 ];

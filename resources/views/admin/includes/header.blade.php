@@ -76,33 +76,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ config('constants.NAVBAR_URL')}}" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.navbar') }}">
-                                <i class="fa-solid fa-sitemap me-2"></i>
-                                <span class="nav-text">{{ trans('messages.navbar') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ config('constants.PROFILE_URL') }}/edit/{{ $encodedUserId }}" title="{{ trans('messages.update-profile') }}" class="nav-link d-flex align-items-center first-menu">
-                                <i class="fa-solid fa-user me-2"></i>
-                                <span class="nav-text">{{ trans('messages.profile') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ config('constants.SKILLS_MASTER_URL')}}" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.skills') }}">
-                                <i class="fa-solid fa-gear me-2"></i>
-                                <span class="nav-text">{{ trans('messages.skills') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ config('constants.SERVICE_MASTER_URL')}}" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.service') }}">
-                                <i class="fa fa-wrench me-2"></i>
-                                <span class="nav-text">{{ trans('messages.service') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ config('constants.NAVBAR_URL')}}" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.portfolio') }}">
-                                <i class="fa-solid fa-star"></i>
-                                <span class="nav-text">{{ trans('messages.portfolio') }}</span>
+                            <a href="{{ config('constants.USERS_URL')}}" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.users') }}">
+                            <i class="fa-solid fa-user me-2"></i>
+                            <span class="nav-text">{{ trans('messages.users') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
