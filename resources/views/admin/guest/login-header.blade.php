@@ -54,5 +54,9 @@
 
 
 <main>
-    @yield('content')
+    <?php /* start Include content */ ?>
+
+        @yield('content')
+
+    <?php /* start Include content */ ?>
 </main>

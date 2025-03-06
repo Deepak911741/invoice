@@ -12,13 +12,13 @@
         <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
           <div class="carousel-inner text-center">
             <div class="carousel-item active">
-              <img src="{{ (config('constants.ASSET_FOLDER').'/images/login-slide1.png')}}" class="d-block w-100 mx-auto" alt="Image 1" style="max-height: 400px; object-fit: contain;">
+              <img src="{{ asset ('public/images/login-slide1.png')}}" class="d-block w-100 mx-auto" alt="Image 1" style="max-height: 400px; object-fit: contain;">
             </div>
             <div class="carousel-item">
-              <img src="{{ (config('constants.ASSET_FOLDER').'/images/login-slide2.png')}}" class="d-block w-100 mx-auto" alt="Image 2" style="max-height: 400px; object-fit: contain;">
+              <img src="{{ asset ('public/images/login-slide2.png')}}" class="d-block w-100 mx-auto" alt="Image 2" style="max-height: 400px; object-fit: contain;">
             </div>
             <div class="carousel-item">
-              <img src="{{ (config('constants.ASSET_FOLDER').'/images/login-slide3.png')}}" class="d-block w-100 mx-auto" alt="Image 3" style="max-height: 400px;  object-fit: contain;">
+              <img src="{{ asset ('public/images/login-slide3.png')}}" class="d-block w-100 mx-auto" alt="Image 3" style="max-height: 400px;  object-fit: contain;">
             </div>
           </div>
 
@@ -44,7 +44,7 @@
 
       <div class="col-12 col-md-5">
         <div class="p-4">
-          <img src="{{ (config('constants.ASSET_FOLDER').'/images/Login.png')}}"
+          <img src="{{ asset ('public/images/Login.png')}}"
           alt="Login Imges"
           class="login-page-image">
             {!! Form::open(array( 'id '=> 'login-form' , 'method' => 'post' , 'url' =>  config('constants.LOGIN_SLUG') .  '/checkLogin' )) !!}
