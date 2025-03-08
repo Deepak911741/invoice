@@ -25,12 +25,17 @@
     $encodedUserId = session()->has('user_id') && !empty(session()->get('user_id')) ? Message::encode(session()->get('user_id')) : null;
     @endphp
 
+    <link href='https://fonts.gstatic.com' crossorigin='anonymous' rel='preconnect' />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
     <link rel="icon" href="{{ (!empty($favIconSrc) ? $favIconSrc  : $favIconSrc ) }}">
     <link href='https://fonts.gstatic.com' crossorigin='anonymous' rel='preconnect'>
     <link rel="stylesheet" href="{{ asset ('public/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/alertify.min.css')}}">
-    <link rel="stylesheet" href="{{ asset ('public/css/bootstrap-datetimepicker-standalone.css')}}">
-    <link rel="stylesheet" href="{{ asset ('public/css/bootstrap-datetimepicker.min.css')}}">
+    <!-- <link rel="stylesheet" href="{{ asset ('public/css/bootstrap-datetimepicker-standalone.css')}}"> -->
+    <!-- <link rel="stylesheet" href="{{ asset ('public/css/bootstrap-datetimepicker.min.css')}}"> -->
     <link rel="stylesheet" href="{{ asset ('public/css/ckeditor5.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/dataTables.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/default.min.css')}}">
@@ -38,11 +43,12 @@
     <link rel="stylesheet" href="{{ asset ('public/css/select2.min.css')}}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset ('public/css/common.style.css')}}">
+    <!-- <link rel="stylesheet" href="{{ asset ('public/css/common.style.css')}}"> -->
     <link rel="stylesheet" href="{{ asset ('public/css/all.min.css')}}">
-    <link rel="stylesheet" href="{{ asset ('public/css/dashbord.css')}}">
+    <!-- <link rel="stylesheet" href="{{ asset ('public/css/dashbord.css')}}"> -->
     <link rel="stylesheet" href="{{ asset ('public/css/header-vertical.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/error.css')}}">
+    <link rel="stylesheet" href="{{ asset ('public/css/main.css')}}">
 
     <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
     <script type="text/javascript" src="{{ asset ('public/js/jquery.min.js') }}"></script>
@@ -56,8 +62,6 @@
     <script type="text/javascript" src="{{ asset ('public/js/jquery.fancybox.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('public/js/select2.min.js') }}"></script>
 
-
-    
 </head>
 
 <body>
@@ -97,7 +101,7 @@
                 </div>
             </div>
 
-            <div class="col py-3" style="">
+            <div class="col ">
                 <div class="d-flex flex-column">
                     <div class="breadcrumb-wrapper d-flex justify-content-end align-items-center border-bottom">
                         <div class="dropdown admin-dropdown me-lg-0">
@@ -123,8 +127,8 @@
                     </div>
 
                     <?php /* Main Section Start Only Use In Developer*/ ?>
-
-
+                    @include('common-form-validation')
+                    @include('common-js')
                     @yield('content')
 
 

@@ -158,6 +158,15 @@ class Guest extends Controller
     	return $response;
     }
 
+	public function ajaxResponse($status , $messages , $data = [] ){
+    	$result = [];
+    	$result['status_code'] = $status;
+    	$result['message'] = $messages;
+    	if(!empty($data)){
+    		$result['data'] = (!empty($data) ? $data : null );
+    	}
+    	echo json_encode($result);die;
+    }
 
 	protected function commonLoginSessionEntry($checkLogin, $password = null)
 	{

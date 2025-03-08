@@ -13,7 +13,6 @@
         <div class="row">
             <div class="col-lg-3 col-md-6">
                 <div class="card bg-theme border-0 mb-3">
-                <?php /* Card body -- */ ?>
                     <div class="card-body card-body-dashbord py-xxl-4">
                         <div class="row">
                             <div class="col">
@@ -33,12 +32,11 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <div class="card   border-0 mb-3">
-                <?php /* Card body -- */ ?>
+                <div class="card bg-theme border-0 mb-3">
                     <div class="card-body card-body-dashbord py-xxl-4">
                         <div class="row">
                             <div class="col">
-                                <h5 class="card-title text-uppercase h6 mb-0">Lorem Ipsum</h5>
+                                <h5 class="card-title text-uppercase h6 mb-0 ">Lorem Ipsum</h5>
                                 <span class="h2 font-weight-bold mb-0">17</span>
                             </div>
                         </div>
@@ -54,13 +52,12 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <div class="card  border-0 mb-3">
-                <?php /* Card body -- */?>
+                <div class="card bg-theme border-0 mb-3">
                     <div class="card-body card-body-dashbord py-xxl-4">
                         <div class="row">
                             <div class="col">
                                 <h5 class="card-title text-uppercase h6 mb-0 ">Lorem Ipsum</h5>
-                                <span class="h2 font-weight-bold mb-0 ">17</span>
+                                <span class="h2 font-weight-bold mb-0">17</span>
                             </div>
                         </div>
                     </div>

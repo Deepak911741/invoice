@@ -16,6 +16,8 @@ Route::group(['prefix' => config('constants.BACKEND_ROUTE_SLUG')], function(){
     //users route
     Route::get('/users', 'App\Http\Controllers\Users@index');
     Route::get('/users/create', 'App\Http\Controllers\Users@create');
+    Route::post('/users/add', 'App\Http\Controllers\Users@add');
+    Route::post('/users/checkUniqueEmail', 'App\Http\Controllers\Users@checkUniqueEmail');
 
 });
 

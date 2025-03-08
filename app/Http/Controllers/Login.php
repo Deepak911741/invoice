@@ -34,7 +34,7 @@ class Login extends MY_controller
         ],
         [
             'login_email.required' => trans("messages.required-enter-field-validation" , [ "fieldName" => trans("messages.email-id") ]) ,
-				'login_password.required' => trans("messages.required-enter-field-validation" , [ "fieldName" => trans("messages.password") ]) ,
+			'login_password.required' => trans("messages.required-enter-field-validation" , [ "fieldName" => trans("messages.password") ]) ,
         ]
         );
 
@@ -42,8 +42,8 @@ class Login extends MY_controller
 			return redirect($this->loginPage)->withErrors($validator)->withInput();
 		}
 
-        $email = $request->input('login_email');
-        $password = $request->input('login_password');
+        $email = (!empty($request->input('login_email')) ? $request->input('login_email') : '');
+        $password = (!empty($request->input('login_password')) ? $request->input('login_password') : '');
 
         $checkLoginWhere = [];
         $checkLoginWhere['v_email'] = $email;

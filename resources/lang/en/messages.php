@@ -180,7 +180,11 @@ return [
 	'required-select-field-validation' => "Please Select :fieldName",
 	'required-upload-field-validation' => "Please Upload :fieldName",
 
+	'common-unique-value-error-message' => ':module You Entered Already Exists. Please Enter A Different :module',
+
 	'users' => 'Users',
 	'add-user' => 'Add User',
 	'update-user' => 'Update User',
+	'mobile-no' => 'Mobile No.',
+	'user' => 'User',
 ];
