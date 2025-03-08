@@ -16,6 +16,7 @@ class MY_controller extends Guest
     public $crudModel;
     public $moduleName;
     public function __construct(){
+        parent::__construct();
         $this->defaultPage = config('constants.DEFAULT_PAGE_INDEX');
     }
 }

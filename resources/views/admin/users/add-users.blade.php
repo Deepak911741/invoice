@@ -22,24 +22,24 @@
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label class="control-label">{{ trans("messages.name") }}<span class="text-danger">*</span></label>
-                                    <input class="form-control" type="text" name="name" placeholder="{{ trans('messages.name') }}">
+                                    <input class="form-control" type="text" name="name" placeholder="{{ trans('messages.name') }}" value="{{old('name',  ( (isset($recordInfo) && (checkNotEmptyString($recordInfo->v_name))) ?  $recordInfo->v_name : '' ) )}}">
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label class="control-label">{{ trans("messages.email-id") }}<span class="text-danger">*</span></label>
-                                    <input class="form-control" type="text" name="email" placeholder="{{ trans('messages.email-id') }}">
+                                    <input class="form-control" type="text" name="email" placeholder="{{ trans('messages.email-id') }}" value="{{old('email',  ( (isset($recordInfo) && (checkNotEmptyString($recordInfo->v_email))) ?  $recordInfo->v_email : '' ) )}}">
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label class="control-label">{{ trans("messages.mobile-no") }}<span class="text-danger">*</span></label>
-                                    <input maxlength="10" class="form-control" type="text" name="mobile" placeholder="{{ trans('messages.mobile-no') }}">
+                                    <input maxlength="10" class="form-control" type="text" name="mobile" placeholder="{{ trans('messages.mobile-no') }}" value="{{old('mobile', ( (isset($recordInfo) && (checkNotEmptyString($recordInfo->v_mobile))) ?  $recordInfo->v_mobile : '' ) )}}">
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group pass-section">
-                                    <label class="control-label">{{ trans("messages.password") }}<span class="text-danger">*</span></label>
+                                    <label class="control-label">{{ trans("messages.password") }}<?php echo ((isset($recordInfo) && ($recordInfo->i_id > 0)) ? '' : '<span class="text-danger">*</span>') ?><span class="text-danger">*</span></label>
                                     <div class="position-relative">
                                         <input class="form-control pass-input" type="password" id="new_password" name="new_password" placeholder="{{ trans('messages.password') }}">
                                         <button type="button" class="showPass" onclick="showPassword(this)"> <i class="eye-slash-icon fa-regular fa-eye"></i></button>
@@ -49,7 +49,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group pass-section">
-                                    <label class="control-label">{{ trans("messages.confirm-password") }}<span class="text-danger">*</span></label>
+                                    <label class="control-label">{{ trans("messages.confirm-password") }}<?php echo ((isset($recordInfo) && ($recordInfo->i_id > 0)) ? '' : '<span class="text-danger">*</span>') ?><span class="text-danger">*</span></label>
                                     <div class="position-relative">
                                         <input class="form-control pass-input" type="password" name="confirm_password" placeholder="{{ trans('messages.confirm-password') }}" autocomplete="new-password">
                                         <button type="button" class="showPass" onclick="showPassword(this)"> <i class="eye-slash-icon fa-regular fa-eye"></i></button>
@@ -129,8 +129,24 @@
             },
         },
         submitHandler: function(form) {
-            form.submit();
-        }
+            var confirm_box = '{{ trans("messages.add-user") }}';
+        	var confirm_box_msg = '{{ trans("messages.common-module-confirm-msg" , [ "action" => trans("messages.add") , "module" => trans("messages.user") ] ) }}';
+
+        	<?php if (isset($recordInfo) && ($recordInfo->i_id > 0)) { ?>
+        		confirm_box = '{{ trans("messages.update-user") }}';
+        		confirm_box_msg = '{{ trans("messages.common-module-confirm-msg" , [ "action" => trans("messages.update") , "module" => trans("messages.user") ] ) }}';
+        	<?php } ?>
+				
+        	<?php if( isset($showConfirmBox) && ($showConfirmBox != false ) ) { ?>
+	        	alertify.confirm( confirm_box , confirm_box_msg  , function () {
+	            	showLoader();
+		            form.submit();
+				}, function () { });
+        	<?php } else { ?>
+	        		showLoader();   
+	            	form.submit();
+        	<?php } ?>
+        },
     });
 
 

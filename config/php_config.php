@@ -26,3 +26,4 @@ $portfolio['DATABSE_NAME'] = 'invoice';
 $portfolio['DATABASE_USER'] = "root";
 $portfolio['DATABASE_PASSWORD'] = "";
 $portfolio['DISPLAY_DATE_FORMAT'] = "d-m-Y";
+$portfolio['SHOW_CONFIRM_BOX'] = true;

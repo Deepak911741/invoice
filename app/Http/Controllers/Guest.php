@@ -18,11 +18,13 @@ class Guest extends Controller
 	public $settingModel;
 	public $settingsInfo;
 	public $siteTitle;
+	public $showConfirmBox;
     public function __construct()
 	{
 		$this->my_model = new My_model();
 		$this->adminFolderName = config('constants.ADMIN_FOLDER');
 		$this->perpageRecord = config('constants.PER_PAGE');
+		$this->showConfirmBox = config('constants.SHOW_CONFIRM_BOX');
 		// $this->settingModel = new Settings_model();
 		// $this->settingsInfo = $this->settingModel->getRecordDetails();
 		// $this->siteTitle = (isset($this->settingsInfo->v_site_title) ? (checkNotEmptyString($this->settingsInfo->v_site_title) ? $this->settingsInfo->v_site_title : '') :  '');

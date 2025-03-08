@@ -181,6 +181,7 @@ return [
 	'required-upload-field-validation' => "Please Upload :fieldName",
 
 	'common-unique-value-error-message' => ':module You Entered Already Exists. Please Enter A Different :module',
+	'common-module-confirm-msg' => "Are You Sure You Want To :action This :module?",
 
 	'users' => 'Users',
 	'add-user' => 'Add User',

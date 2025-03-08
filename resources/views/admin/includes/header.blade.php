@@ -41,10 +41,10 @@
     <link rel="stylesheet" href="{{ asset ('public/css/default.min.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/jquery.fancybox.min.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/select2.min.css')}}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- <link rel="stylesheet" href="{{ asset ('public/css/common.style.css')}}"> -->
-    <link rel="stylesheet" href="{{ asset ('public/css/all.min.css')}}">
+    <!-- <link rel="stylesheet" href="{{ asset ('public/css/all.min.css')}}"> -->
     <!-- <link rel="stylesheet" href="{{ asset ('public/css/dashbord.css')}}"> -->
     <link rel="stylesheet" href="{{ asset ('public/css/header-vertical.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/error.css')}}">
@@ -58,9 +58,15 @@
     <script type="text/javascript" src="{{ asset ('public/js/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('public/js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('public/js/common.script.js') }}"></script>
-    <script type="text/javascript" src="{{ asset ('public/js/dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('public/js/jquery.fancybox.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('public/js/select2.min.js') }}"></script>
+
+
+    <script>
+        var site_url = "{{ config('constants.SITE_URL') }}" ;
+        var backend_site_url = "{{config('constants.BACKEND_SITE_URL')}}";
+        var data_table = '';
+    </script>
 
 </head>
 
@@ -127,6 +133,8 @@
                     </div>
 
                     <?php /* Main Section Start Only Use In Developer*/ ?>
+                    @include(config('constants.ADMIN_FOLDER') . 'common-admin-js')
+                    @include(config('constants.ADMIN_FOLDER') . 'common-update-status-delete-script')
                     @include('common-form-validation')
                     @include('common-js')
                     @yield('content')
@@ -141,4 +149,11 @@
 
 </body>
 
+<script>
+    $(document).ready(function() {
+        if($(window).width() < 767 && $(".dataTables_wrapper").length > 0){
+                $.fn.DataTable.ext.pager.numbers_length = 5;
+        } 
+    });
+</script>
 </html>

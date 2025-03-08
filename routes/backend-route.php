@@ -18,6 +18,8 @@ Route::group(['prefix' => config('constants.BACKEND_ROUTE_SLUG')], function(){
     Route::get('/users/create', 'App\Http\Controllers\Users@create');
     Route::post('/users/add', 'App\Http\Controllers\Users@add');
     Route::post('/users/checkUniqueEmail', 'App\Http\Controllers\Users@checkUniqueEmail');
+    Route::post('/users/filter', 'App\Http\Controllers\Users@filter');
+    Route::get('/users/edit/{id}', 'App\Http\Controllers\Users@edit')->name('user.edit');
 
 });
 

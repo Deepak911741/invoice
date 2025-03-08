@@ -18,6 +18,7 @@ class My_model extends Model
     const UPDATED_AT = 'dt_updated_at';
     const DELETED_AT = 'dt_deleted_at';
     public function __construct(){
+        DB::enableQueryLog();
         parent::__construct();
         $this->loggedUserId = 999;
         $this->currentDateTime = date('Y-m-d H-i-s');
@@ -262,4 +263,27 @@ class My_model extends Model
 
         return $query;
     }
+
+    public static function last_query(){
+	
+		$query = DB::getQueryLog();
+		$query = end($query);
+		$last_query = self::bindDataToQuery($query);
+		return $last_query;
+	
+	}
+
+    protected static function bindDataToQuery($queryItem){
+		$query = $queryItem['query'];
+		$bindings = $queryItem['bindings'];
+		$arr = explode('?',$query);
+		$res = '';
+		foreach($arr as $idx => $ele){
+			if($idx < count($arr) - 1){
+				$res = $res.$ele."'".$bindings[$idx]."'";
+			}
+		}
+		$res = $res.$arr[count($arr) -1];
+		return $res;
+	}
 }

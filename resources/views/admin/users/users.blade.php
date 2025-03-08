@@ -1,6 +1,9 @@
 @extends(config('constants.ADMIN_FOLDER') . 'includes/header')
 
 @section('content')
+
+@include('common-datatable-scripts')
+
 <main class="page-height bg-light-color">
     <div class="breadcrumb-wrapper d-flex border-bottom">
         <h1 class="h3 mb-0 me-3 header-title" id="pageTitle">{{ $pageTitle  }} (<span class="total-record-count">2</span>)</h1>
@@ -27,16 +30,19 @@
                         <div class="col-lg-2 col-sm-6">
                             <div class="form-group">
                                 <label class="control-label">{{ trans("messages.status") }}</label>
-                                <select class="form-select"  name="search_status">
-                                	<option value="">{{ trans("messages.select") }}</option>
-                                	<option value="">{{ trans("messages.enable") }}</option>
-                                	<option value="">{{ trans("messages.disable") }}</option>
+                                <select class="form-select"  name="search_status" onchange="filterData(this);">
+                                <option value="">{{ trans("messages.select") }}</option>
+                                    @if(isset($statusDetails) && !empty($statusDetails))
+                                        @foreach($statusDetails as $statusKey => $statusValue)
+                                        	<option value="{{ (isset($statusKey) && !empty($statusKey) ? $statusKey : '') }}">{{ (isset($statusValue) && !empty($statusValue) ? $statusValue : '') }}</option>
+                                        @endforeach 
+									@endif
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-2 twt-search-div">
                             <div class="form-group">
-                                <button type="button" title="{{ trans('messages.search') }}" class="btn btn-theme text-white twt-search-btn">{{ trans("messages.search") }}</button>
+                                <button type="button" title="{{ trans('messages.search') }}" class="btn btn-theme text-white twt-search-btn" onclick="filterData(this);">{{ trans("messages.search") }}</button>
                                 <button type="button" title="{{ trans('messages.reset') }}" class="btn btn-outline-secondary reset-wild-tigers twt-reset-btn">{{ trans("messages.reset") }}</button>
                             </div>
                         </div>
@@ -47,55 +53,20 @@
             <div class="filter-result-wrapper">
                 <div class="card card-body shadow-sm">
                 {{ Message::readMessage() }}
-                    <div class="table-responsive">
-                        <table class="table table-sm table-bordered table-hover">
+                    <div class="table-responsive W-100">
+                        <table class="table table-sm table-bordered table-hover" id="user-table">
                             <thead class="twt-table-header">
                                 <tr>
                                     <th class="sr-col">{{ trans("messages.sr-no") }}</th>
                                     <th>{{ trans("messages.name") }}</th>
-                                    <th>{{ trans("messages.email-id") }}</th>
+                                    <th class="">{{ trans("messages.email-id") }}</th>
                                     <th>{{ trans("messages.mobile-no") }}</th>
                                     <th class="status-col">{{ trans("messages.status") }}</th>
                                     <th class="actions-col">{{ trans("messages.actions") }}</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="sr-col">1</td>
-                                    <td>Lorem, ipsum dolor.</td>
-                                    <td>demo@gmail.com</td>
-                                    <td>9999999999</td>
-                                    <td>
-                                        <div class="form-check form-switch twt-custom-switch status-class">
-                                            <input type="checkbox" class="form-check-input onclick-change-name" name="customSwitches2" id="customSwitches2">
-                                            <label class="form-check-label" for="customSwitches2">Disable</label>
-                                        </div>
-                                    </td>
-                                    <td class="actions-col">
-                                        <div class="actions-col-div">
-                                            <a title='{{ trans("messages.edit") }}' href="javascript:void(0)" class="btn btn-sm action-btn edit-btn"><i class="fa-fw fi fi-rr-pencil"></i></a>
-                                            <button type="button" title='{{ trans("messages.delete") }}' class="btn btn-sm action-btn delete-btn"><i class="fi fi-rr-trash fa-fw"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="sr-col">2</td>
-                                    <td>Lorem, ipsum dolor.</td>
-                                    <td>demo@gmail.com</td>
-                                    <td>9999999999</td>
-                                    <td>
-                                        <div class="form-check form-switch twt-custom-switch status-class">
-                                            <input type="checkbox" class="form-check-input onclick-change-name" name="customSwitches2" id="customSwitches2">
-                                            <label class="form-check-label" for="customSwitches2">Disable</label>
-                                        </div>
-                                    </td>
-                                    <td class="actions-col">
-                                        <div class="actions-col-div">
-                                            <a title='{{ trans("messages.edit") }}' href="javascript:void(0)" class="btn btn-sm action-btn edit-btn"><i class="fa-fw fi fi-rr-pencil"></i></a>
-                                            <button type="button" title='{{ trans("messages.delete") }}' class="btn btn-sm action-btn delete-btn"><i class="fi fi-rr-trash fa-fw"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
+                            <tbody class="ajax-view">
+
                             </tbody>
                         </table>
                     </div>
@@ -105,4 +76,49 @@
     </section>
 </main>
 
+
+<script>
+var table_id = 'user-table';
+
+function searchField() {
+    var search_by = $.trim($("[name='search_by']").val());
+    var search_status = $.trim($("[name='search_status']").val());
+
+    var search_data = {
+        'search_by': search_by,
+        'search_status': search_status,
+    }
+    
+    return search_data;
+}
+
+function filterData() {
+    if ($.fn.DataTable.isDataTable('#' + table_id)) {
+        $('#' + table_id).DataTable().destroy();
+    }
+    reintDataTable(table_id);
+}
+
+$(document).ready(function() {
+    reintDataTable(table_id);
+})
+
+var module_url = '{{ config("constants.USERS_URL") }}' + '/';
+
+function reintDataTable(class_name = null) {
+    var pagination_url = module_url + "filter";
+
+    var table_columns = [];
+    table_columns.push({ data: 'sr_no', orderable: false, class: 'sr-col' });
+    table_columns.push({ data: 'name' });
+    table_columns.push({ data: 'email' });
+    table_columns.push({ data: 'mobile' });
+    table_columns.push({ data: 'status', orderable: false });
+    table_columns.push({ data: 'action', orderable: false, class: 'actions-col' });
+
+    var search_data = searchField();
+
+    displayDataTable(class_name, pagination_url, search_data, table_columns, true);
+}
+</script>
 @endsection
