@@ -7,6 +7,7 @@ $constants = [
 	'PER_PAGE' => 20,
 	'TABLE_LISTING_PER_PAGE' => 30,
 	'ADMIN_FOLDER' => 'admin/',
+	'AJAX_VIEW_FOLDER' => 'admin/ajax-view/',
 	'FORNTEND_FOLDER' => 'frontend/',
 	'GUEST_FOLDER_PATH' => 'guest/',
     'ACTIVE_STATUS' => 1,
@@ -61,6 +62,7 @@ $constants = [
 	'USER_MASTER' => 'users',
 
 	'LOGIN_HISTORY_TABLE' => 'login_history',
+	'LOGIN_HISTORY_URL' => $portfolio['BACKEND_SITE_URL'] . 'login-history',
 ];
 
 return array_merge($constants , $portfolio);

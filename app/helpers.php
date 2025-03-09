@@ -26,6 +26,59 @@ if(!function_exists('monthEndDate')){
     }
 }
 
+if (! function_exists('clientDateTime')) {
+
+	function clientDateTime($value, $dbFormat = true)
+	{
+		$result = date('Y-m-d H:i:s', strtotime($value));
+		if ($dbFormat != false) {
+			$result = date(config('constants.DISPLAY_DATE_TIME_FORMAT'), strtotime($value));
+		}
+
+		return $result;
+	}
+}
+
+if (! function_exists('clientTime')) {
+	function clientTime($value)
+	{
+		$result = "";
+		if(!empty($value)){
+			$result = date('h:i A', strtotime($value));
+		}
+
+		return $result;
+	}
+}
+
+if (! function_exists('dbDate')) {
+	function dbDate($value, $dbFormat = true)
+	{
+		$result = null;
+		if(!empty($value)){
+			$value = str_replace("/", "-", $value);
+			$result = date('Y-m-d', strtotime($value));
+		}
+		return $result;
+	}
+}
+
+if (! function_exists('decimalAmount')) {
+	function  decimalAmount($value){
+
+		$result = 0;
+		if(!empty($value)){
+			$value = floatval($value);
+			$fmt = new \NumberFormatter($locale = 'en_US', NumberFormatter::DECIMAL);
+			$result = $fmt->format($value);
+		} else {
+			$result = 0.00;
+		}
+
+		return $result;
+	}
+}
+
 if (! function_exists('enumText')) {
 	function enumText($value) {
 		$result = '';

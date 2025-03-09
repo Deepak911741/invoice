@@ -193,4 +193,10 @@ return [
 	'user' => 'User',
 
 	'invoce' => 'Invoice',
+	
+	'from-date' => 'From Date',
+	'to-date' => 'To Date',
+	'login-date-time' => 'Login Date & Time',
+	'ip-address' => 'IP Address',
+	'search-by' => 'Search By',
 ];

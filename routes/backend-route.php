@@ -27,6 +27,10 @@ Route::group(['prefix' => config('constants.BACKEND_ROUTE_SLUG')], function(){
     Route::get('/settings', 'App\Http\Controllers\Settings@index');
     Route::post('/settings/add', 'App\Http\Controllers\Settings@add');
 
+    // login history route
+    Route::get('/login-history', 'App\Http\Controllers\Login_history@index');
+    Route::post('/login-history/filter', 'App\Http\Controllers\Login_history@filter');
+
 });
 
 Route::post('login/checkLogin', 'App\Http\Controllers\Login@checkLogin');

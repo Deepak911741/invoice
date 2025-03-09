@@ -34,8 +34,7 @@
     <link href='https://fonts.gstatic.com' crossorigin='anonymous' rel='preconnect'>
     <link rel="stylesheet" href="{{ asset ('public/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/alertify.min.css')}}">
-    <!-- <link rel="stylesheet" href="{{ asset ('public/css/bootstrap-datetimepicker-standalone.css')}}"> -->
-    <!-- <link rel="stylesheet" href="{{ asset ('public/css/bootstrap-datetimepicker.min.css')}}"> -->
+    <link rel="stylesheet" href="{{ asset ('public/css/bootstrap-datetimepicker.min.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/ckeditor5.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/dataTables.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/default.min.css')}}">
@@ -52,8 +51,8 @@
     <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
     <script type="text/javascript" src="{{ asset ('public/js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('public/js/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('public/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('public/js/alertify.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript" src="{{ asset ('public/js/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('public/js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('public/js/common.script.js') }}"></script>
@@ -96,8 +95,8 @@
             <ul class="sidebar-nav">
                 <li class="text-center nav-users nav-logo-li">
                     <a class="navbar-brand p-lg-0" href="{{ config('constants.DASHBOARD_URL') }}">
-                    <img src="{{ (!empty($websiteLogoSrc) ? $websiteLogoSrc : $staticWebsiteLogo)  }}" alt="{{ ( (isset($settingsInfo->v_site_title) && (checkNotEmptyString($settingsInfo->v_site_title)) ) ? $settingsInfo->v_site_title : '' ) }}" class="img-fluid big-image nav-logo">
-                    <img src="{{ (!empty($favIconSrc) ? $favIconSrc  : $staticFavIcon ) }}" alt="{{ ( (isset($settingsInfo->v_site_title) && (checkNotEmptyString($settingsInfo->v_site_title)) ) ? $settingsInfo->v_site_title : '' ) }}" class="img-fluid big-image nav-logo nav-logo-toggla">
+                    <img src="{{ (isset($websiteLogoSrc) ? $websiteLogoSrc : $staticWebsiteLogo)  }}" alt="{{ ( (isset($settingsInfo->v_site_title) && (checkNotEmptyString($settingsInfo->v_site_title)) ) ? $settingsInfo->v_site_title : '' ) }}" class="img-fluid big-image nav-logo">
+                    <img src="{{ (isset($favIconSrc) ? $favIconSrc  : $staticFavIcon ) }}" alt="{{ ( (isset($settingsInfo->v_site_title) && (checkNotEmptyString($settingsInfo->v_site_title)) ) ? $settingsInfo->v_site_title : '' ) }}" class="img-fluid big-image nav-logo nav-logo-toggla">
                     </a>
                 </li>
                 <li class="nav-items-class">
@@ -115,7 +114,7 @@
                 </li>
                 @endif
                 <li class="nav-items-class">
-                    <a href="{{ config('constants.LOGIN_HISTORY_URL')  }}" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.invoce') }}">
+                    <a href="" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.invoce') }}">
                     <i class="fas fa-file-invoice fa-fw"></i>
                         <span class="nav-text">{{ trans("messages.invoce") }}</span>
                     </a>

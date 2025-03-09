@@ -19,6 +19,7 @@ class Guest extends Controller
 	public $settingsInfo;
 	public $siteTitle;
 	public $showConfirmBox;
+	public $perPageRecord;
     public function __construct(){
 		$this->my_model = new My_model();
 		$this->adminFolderName = config('constants.ADMIN_FOLDER');
