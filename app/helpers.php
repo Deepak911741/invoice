@@ -26,6 +26,17 @@ if(!function_exists('monthEndDate')){
     }
 }
 
+if (! function_exists('enumText')) {
+	function enumText($value) {
+		$result = '';
+		if(!empty($value)){
+			$result = ucwords(str_replace("_",  " ", $value));
+		}
+		return $result;
+	}
+}
+
+
 if( !function_exists('uploadedFileExists') ){
 	function uploadedFileExists($fileName){
 		if( !empty($fileName) ){

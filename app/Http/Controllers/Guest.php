@@ -19,15 +19,14 @@ class Guest extends Controller
 	public $settingsInfo;
 	public $siteTitle;
 	public $showConfirmBox;
-    public function __construct()
-	{
+    public function __construct(){
 		$this->my_model = new My_model();
 		$this->adminFolderName = config('constants.ADMIN_FOLDER');
 		$this->perpageRecord = config('constants.PER_PAGE');
 		$this->showConfirmBox = config('constants.SHOW_CONFIRM_BOX');
-		// $this->settingModel = new Settings_model();
-		// $this->settingsInfo = $this->settingModel->getRecordDetails();
-		// $this->siteTitle = (isset($this->settingsInfo->v_site_title) ? (checkNotEmptyString($this->settingsInfo->v_site_title) ? $this->settingsInfo->v_site_title : '') :  '');
+		$this->settingModel = new Settings_model();
+		$this->settingsInfo = $this->settingModel->getRecordDetails();
+		$this->siteTitle = (isset($this->settingsInfo->v_site_title) ? (checkNotEmptyString($this->settingsInfo->v_site_title) ? $this->settingsInfo->v_site_title : '') :  '');
 	}
 
     public function loadAdminView($viewName, $pageData = [])
@@ -177,15 +176,15 @@ class Guest extends Controller
 		Session::put('role', $checkLogin->v_role);
 		Session::put('email', $checkLogin->v_email);
 		Session::put('isLoggedIn', true);
-		// Session::put('site_title', $this->siteTitle);
+		Session::put('site_title', $this->siteTitle);
 
 		$_SESSION['login_application_user'] = true;
-		// if (!empty($checkLogin)) {
-		// 	$loginHistoryId = [];
-		// 	$loginHistoryId['i_login_id'] = $checkLogin->i_id;
-		// 	$loginHistoryId['i_session_id'] = session()->get('_token');
+		if (!empty($checkLogin)) {
+			$loginHistoryId = [];
+			$loginHistoryId['i_login_id'] = $checkLogin->i_id;
+			$loginHistoryId['i_session_id'] = session()->get('_token');
 
-		// 	$insertLogin = $this->my_model->insertTableData(config('constants.LOGIN_HISTORY_TABLE'), $loginHistoryId);
-		// }
+			$insertLogin = $this->my_model->insertTableData(config('constants.LOGIN_HISTORY_TABLE'), $loginHistoryId);
+		}
 	}
 }

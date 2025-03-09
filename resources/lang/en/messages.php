@@ -182,10 +182,15 @@ return [
 
 	'common-unique-value-error-message' => ':module You Entered Already Exists. Please Enter A Different :module',
 	'common-module-confirm-msg' => "Are You Sure You Want To :action This :module?",
+	'common-module-confirm-js-msg' => "Are You Sure You Want To ",
+	'password-confirm-password-not-match' =>'Password And Confirm Password Should Be Same',
+	'new-password-confirm-password-not-match' =>'New Password And Confirm Password Should Be Same',
 
 	'users' => 'Users',
 	'add-user' => 'Add User',
 	'update-user' => 'Update User',
 	'mobile-no' => 'Mobile No.',
 	'user' => 'User',
+
+	'invoce' => 'Invoice',
 ];

@@ -98,6 +98,35 @@ class My_model extends Model
         return $result;
     }
 
+    public  function deleteTableData($tableName,$updateData,$whereData){
+    
+    	$result = false;
+    
+    	try{
+    		$deleteQuery = DB::table($tableName);
+    		
+    		if(!empty($whereData)){
+    			foreach($whereData as $key=>$value){
+    				$deleteQuery->where($key, $value);
+    			}
+    			$skipIpAddress = false;
+    			if( isset($updateData['skip_ip_address']) && ( $updateData['skip_ip_address'] == true ) ){
+    				$skipIpAddress = true;
+    				unset($updateData['skip_ip_address']);
+    			}
+    
+    			$updateData = array_merge ($this->deleteDateTimeData($skipIpAddress) , $updateData);
+    
+    			$result = $deleteQuery->update($updateData);
+    		}
+    	}catch(\Exception $e){
+    		$this->errorLogEntry(['action' => 'delete query' , 'data' => '' , 'error_message' => $e->getMessage() , 'file' => $e->getFile() , 'line' => $e->getLine()]);
+    	}
+    	 
+    
+    	return $result;
+    }
+
     public function commonWhereData($query, $whereData = [], $likeData = [], $additionalData = [])
     {
         if (!empty($whereData)) {

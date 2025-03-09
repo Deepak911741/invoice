@@ -20,6 +20,12 @@ Route::group(['prefix' => config('constants.BACKEND_ROUTE_SLUG')], function(){
     Route::post('/users/checkUniqueEmail', 'App\Http\Controllers\Users@checkUniqueEmail');
     Route::post('/users/filter', 'App\Http\Controllers\Users@filter');
     Route::get('/users/edit/{id}', 'App\Http\Controllers\Users@edit')->name('user.edit');
+    Route::post('/users/updateStatus', 'App\Http\Controllers\Users@updateStatus');
+    Route::post('/users/delete/{id}', 'App\Http\Controllers\Users@delete')->name('user.delete');
+
+    // setting route
+    Route::get('/settings', 'App\Http\Controllers\Settings@index');
+    Route::post('/settings/add', 'App\Http\Controllers\Settings@add');
 
 });
 

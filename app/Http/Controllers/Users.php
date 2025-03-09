@@ -262,6 +262,33 @@ class Users extends MY_controller
 
     }
 
+    public function updateStatus(Request $request){
+		if(!empty($request->input())){
+			return $this->updateMasterStatus($request , $this->tableName,  $this->moduleName);
+		}
+	}
+
+    public function delete(Request $request){
+		if( session()->has('role')  && ( session()->get('role') != config('constants.ROLE_ADMIN') ) ){
+			return redirect( config ( 'constants.DASHBOARD_URL') );
+		}
+		
+		$errorFound = true;
+		if(!empty($request->input())){
+			$recordId = (!empty($request->input('delete_record_id')) ? (int)Message::decode( $request->input('delete_record_id') ) : 0 );
+
+			if( $recordId  > 0 ){
+				$errorFound = false;
+				
+				return $this->removeRecord($this->tableName, $recordId, $this->moduleName);
+			}
+		}
+		
+		if( $errorFound != false ){
+			return redirect(config('constants.PAGE_NOT_FOUND_URL'));
+		}
+	}
+
 
     protected function commonFilterData($request = null){
         $whereData = $likeData = $additionalData = [];

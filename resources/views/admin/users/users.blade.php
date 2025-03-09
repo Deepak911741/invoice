@@ -6,7 +6,7 @@
 
 <main class="page-height bg-light-color">
     <div class="breadcrumb-wrapper d-flex border-bottom">
-        <h1 class="h3 mb-0 me-3 header-title" id="pageTitle">{{ $pageTitle  }} (<span class="total-record-count">2</span>)</h1>
+        <h1 class="h3 mb-0 me-3 header-title" id="pageTitle">{{ $pageTitle  }} (<span class="total-record-count"></span>)</h1>
         <div class="ms-auto pt-sm-0 d-flex align-items-center">
             <a href="{{ config('constants.USERS_URL') . '/create' }}" class="d-flex align-items-center btn btn-theme text-white button-actions-top-bar add-btn  border btn-sm me-2 twt-add-btn" title="{{ trans('messages.add-user') }}"><i class="fas fa-plus twt-add-icon"></i> <span class="d-sm-block d-none"> {{ trans("messages.add-user") }} </span></a>
             <button type="button" class="d-flex align-items-center btn btn text-white button-actions-top-bar add-btn border btn-sm twt-filter-btn" data-bs-toggle="collapse" data-bs-target="#filter" title="{{ trans('messages.filter') }}"><i class="fas fa-filter twt-filter-icon"></i> <span class="d-sm-block d-none"> {{ trans("messages.filter") }} </span></button>
@@ -53,7 +53,7 @@
             <div class="filter-result-wrapper">
                 <div class="card card-body shadow-sm">
                 {{ Message::readMessage() }}
-                    <div class="table-responsive W-100">
+                    <div class="table-responsive">
                         <table class="table table-sm table-bordered table-hover" id="user-table">
                             <thead class="twt-table-header">
                                 <tr>

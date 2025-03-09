@@ -41,14 +41,13 @@
     <link rel="stylesheet" href="{{ asset ('public/css/default.min.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/jquery.fancybox.min.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/select2.min.css')}}">
-    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- <link rel="stylesheet" href="{{ asset ('public/css/common.style.css')}}"> -->
-    <!-- <link rel="stylesheet" href="{{ asset ('public/css/all.min.css')}}"> -->
-    <!-- <link rel="stylesheet" href="{{ asset ('public/css/dashbord.css')}}"> -->
+    <link rel="stylesheet" href="{{ asset ('public/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ asset ('public/css/dashbord.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/header-vertical.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/error.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/main.css')}}">
+    <link rel="stylesheet" href="{{ asset ('public/css/fontawesome/all.min.css')}}">
 
     <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
     <script type="text/javascript" src="{{ asset ('public/js/jquery.min.js') }}"></script>
@@ -70,85 +69,131 @@
 
 </head>
 
-<body>
-    <div class="container-fluid">
-        <div class="row flex-nowrap">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark min-vh-100">
-                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                    <a href="">
-                        <img src="{{ (!empty($websiteLogoSrc) ? $websiteLogoSrc  : $websiteLogoSrc ) }}" alt="" width="150" height="80" style="margin-bottom: 5px;">
-                    </a>
-                    <ul class="nav nav-pills flex-column mb-sm-auto mt-4 align-items-center align-items-sm-start" id="menu">
-                        <li class="nav-items-class">
-                            <a href="{{ config('constants.DASHBOARD_URL') }}" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.dashboard') }}">
-                                <i class="fa-solid fa-house me-2"></i>
-                                <span class="nav-text">{{ trans('messages.dashboard') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ config('constants.USERS_URL')}}" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.users') }}">
-                            <i class="fa-solid fa-user me-2"></i>
-                            <span class="nav-text">{{ trans('messages.users') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ config('constants.CONTECT_BACK_URL')}}" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.contect') }}">
-                                <i class="fa fa-address-book me-2"></i>
-                                <span class="nav-text">{{ trans('messages.contect') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ config('constants.SETTINGS_URL')}}" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.settings') }}">
-                                <i class="fa-solid fa-gear me-2"></i>
-                                <span class="nav-text">{{ trans('messages.settings') }}</span>
-                            </a>
-                        </li>
-                    </ul>
+<body class="vertical-header">
+<div id="wrapper" class="wrapper">
+    <header class="d-print-none">
+        <nav class="navbar navbar-dark">
+            <button class="navbar-toggler ripple me-auto" type="button" accesskey="m">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            @if(!empty(session()->get('role')) && session()->get('role') == config("constants.ROLE_ADMIN"))
+            <li class="nav-item ms-auto d-block me-3"><a class="nav-link" title="{{ trans('messages.download-backup') }}" href="{{ config('constants.DASHBOARD_URL') . '/backup' }}"><i class="fas fa-download fa-fw"></i> <span class="d-none d-sm-inline-block">{{ trans("messages.download-backup") }}</span><span class="d-sm-none d-inline-block">{{ trans("messages.backup") }}</span></a></li>
+            @endif
+            <div class="dropdown admin-dropdown me-lg-0">
+                <a class="dropdown-toggle d-inline-block" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">         
+                <span class="img-user align-middle me-2 rounded-circle d-blcok"><span id="username" class="d-inline-block align-middle">{{ ( session()->has('name') ? session()->get('name') : trans("messages.admin") )  }}</span></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ config('constants.CHANGE_PASSWORD_URL') }}" title="{{ trans('messages.change-password') }}"><i class="fas fa-lock password"></i>{{ trans("messages.change-password") }}</a>
+                    <a href="{{ config('constants.SITE_URL') .  'logout' }}" class="dropdown-item logout-btn text-dark text-decoration-none font-15 d-sm-none d-flex align-items-center"  title="{{ trans('messages.logout') }}"><i class="fas fa-sign-out-alt password"></i>{{ trans("messages.logout") }}</a>
                 </div>
             </div>
+            <div class="logout logout-btn-items d-sm-flex d-none ">
+                <a href="{{ config('constants.SITE_URL') .  'logout'  }}" class=" d-sm-flex d-none logout-btn text-dark text-decoration-none font-15  align-items-center" title="{{ trans('messages.logout') }}"><i class="fas fa-power-off me-2"></i> <span>{{ trans("messages.logout") }}</span> </a>
+            </div>
+        </nav>
+        <div class="sidebar" id="sidebar">
+            <ul class="sidebar-nav">
+                <li class="text-center nav-users nav-logo-li">
+                    <a class="navbar-brand p-lg-0" href="{{ config('constants.DASHBOARD_URL') }}">
+                    <img src="{{ (!empty($websiteLogoSrc) ? $websiteLogoSrc : $staticWebsiteLogo)  }}" alt="{{ ( (isset($settingsInfo->v_site_title) && (checkNotEmptyString($settingsInfo->v_site_title)) ) ? $settingsInfo->v_site_title : '' ) }}" class="img-fluid big-image nav-logo">
+                    <img src="{{ (!empty($favIconSrc) ? $favIconSrc  : $staticFavIcon ) }}" alt="{{ ( (isset($settingsInfo->v_site_title) && (checkNotEmptyString($settingsInfo->v_site_title)) ) ? $settingsInfo->v_site_title : '' ) }}" class="img-fluid big-image nav-logo nav-logo-toggla">
+                    </a>
+                </li>
+                <li class="nav-items-class">
+                    <a href="{{ config('constants.DASHBOARD_URL') }}" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.dashboard') }}">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                        <span class="nav-text">{{ trans("messages.dashboard") }}</span>
+                    </a>
+                </li>
+                @if( in_array( session()->get('role') ,  [ config('constants.ROLE_ADMIN') ]  ) )
+                <li class="nav-items-class">
+                    <a href="{{ config('constants.USERS_URL') }}" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.users') }}">
+                        <i class="fa-solid fa-user fa-fw"></i>
+                        <span class="nav-text">{{ trans("messages.users") }}</span>
+                    </a>
+                </li>
+                @endif
+                <li class="nav-items-class">
+                    <a href="{{ config('constants.LOGIN_HISTORY_URL')  }}" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.invoce') }}">
+                    <i class="fas fa-file-invoice fa-fw"></i>
+                        <span class="nav-text">{{ trans("messages.invoce") }}</span>
+                    </a>
+                </li>
+                <li class="nav-items-class">
+                    <a href="{{ config('constants.LOGIN_HISTORY_URL')  }}" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.login-history') }}">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                        <span class="nav-text">{{ trans("messages.login-history") }}</span>
+                    </a>
+                </li>
+                <li class="nav-items-class">
+                        <a href="{{ config('constants.SETTINGS_URL')  }}" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.settings') }}">
+                            <i class="fa-solid fa-gear fa-fw"></i>
+                            <span class="nav-text">{{ trans("messages.settings") }}</span>
+                        </a>
+                    </li>
+            </ul>
 
-            <div class="col ">
-                <div class="d-flex flex-column">
-                    <div class="breadcrumb-wrapper d-flex justify-content-end align-items-center border-bottom">
-                        <div class="dropdown admin-dropdown me-lg-0">
-                            <a class="dropdown-toggle d-inline-block" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="img-user me-2 rounded-circle d-blcok"><i class="fa fa-user me-2" aria-hidden="true"></i><span id="username" class="d-inline-block ">{{ ( session()->has('name') ? session()->get('name') : trans("messages.admin") )  }}</span></span>
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ config('constants.CHANGE_PASSWORD_URL') }}" title="{{ trans('messages.change-password') }}"><i class="fas fa-lock password"></i>{{ trans("messages.change-password") }}</a>
-                                @php
-                                $encodedUserId = session()->has('user_id') && !empty(session()->get('user_id')) ? Message::encode(session()->get('user_id')) : null;
-                                @endphp
-
-                                <a class="dropdown-item" href="{{ config('constants.PROFILE_URL') }}/edit/{{ $encodedUserId }}" title="{{ trans('messages.update-profile') }}">
-                                    {{ trans('messages.update-profile') }}
-                                </a>
-                                <a href="{{ config('constants.SITE_URL') .  'logout' }}" class="dropdown-item logout-btn text-dark text-decoration-none font-15 d-sm-none d-flex align-items-center" title="{{ trans('messages.logout') }}"><i class="fas fa-sign-out-alt password"></i>{{ trans("messages.logout") }}</a>
-                            </div>
-                        </div>
-                        <div class="logout logout-btn-items d-sm-flex d-none ">
-                            <a href="{{ config('constants.SITE_URL') .  'logout'  }}" class=" d-sm-flex d-none logout-btn text-dark text-decoration-none font-15  align-items-center" title="{{ trans('messages.logout') }}"><i class="fas fa-power-off me-2"></i> <span>{{ trans("messages.logout") }}</span> </a>
-                        </div>
-                    </div>
-
-                    <?php /* Main Section Start Only Use In Developer*/ ?>
-                    @include(config('constants.ADMIN_FOLDER') . 'common-admin-js')
-                    @include(config('constants.ADMIN_FOLDER') . 'common-update-status-delete-script')
-                    @include('common-form-validation')
-                    @include('common-js')
-                    @yield('content')
-
-
-                    <?php /* Main Section The End */ ?>
-
-                </div>
+            <div class="fixed-footer border-top p-2">
+                <p class="text-center small mb-0">&copy; <?php echo date('Y') ?> 
+                @if(isset($settingsInfo) && checkNotEmptyString($settingsInfo->v_powered_by))
+                <a href="{{ ( checkNotEmptyString($settingsInfo->v_powered_by_link) ? $settingsInfo->v_powered_by_link : 'javascript:void(0)') }}" target="_blank" rel="noopener noreferrer">{{ $settingsInfo->v_powered_by }}</a>
+                @endif
+                </p>
             </div>
         </div>
-    </div>
+    </header>
 
-</body>
+	@include(config('constants.ADMIN_FOLDER') . 'common-admin-js')
+    @include(config('constants.ADMIN_FOLDER') . 'common-update-status-delete-script')
+    @include('common-form-validation')
+    @include('common-js')
+    @yield('content')
+    <?php /* nav end  -- */?>
 
+</div>
+
+<?php /* Notification -- */?>
+<script>
+    // before script
+    var detect_open_notification = false;
+    $('.icon_wrap').on('click', function() {
+        detect_open_notification = true;
+        if ($(this).parent().hasClass('active')) {
+            $(this).parent().removeClass('active');
+        } else {
+            $(this).parent().addClass('active');
+        }
+    });
+
+    $('main').click(function() {
+        $('.notifications').removeClass('active');
+    });
+
+    $('.main-navbar-wrapper').click(function(e) {
+        if (detect_open_notification != true) {
+            if ($('.notifications').hasClass('active') != false) {
+                $('.notifications').removeClass('active');
+            }
+        } else {
+            detect_open_notification = false;
+        }
+    });
+
+    
+</script>
+
+
+
+<script>
+    $(document).ready(function() {
+        $('.sidebar .main-drodown-toggle').on('click', function(e) {
+            $(this).parent("li").toggleClass('active');
+            $('.sidebar li.active').not($(this).parents("li")).removeClass("active");
+
+        });
+    });
+</script>
 <script>
     $(document).ready(function() {
         if($(window).width() < 767 && $(".dataTables_wrapper").length > 0){
@@ -156,4 +201,5 @@
         } 
     });
 </script>
+</body>
 </html>

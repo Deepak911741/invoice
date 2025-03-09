@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group pass-section">
-                                    <label class="control-label">{{ trans("messages.password") }}<?php echo ((isset($recordInfo) && ($recordInfo->i_id > 0)) ? '' : '<span class="text-danger">*</span>') ?><span class="text-danger">*</span></label>
+                                    <label class="control-label">{{ trans("messages.password") }}<?php echo ((isset($recordInfo) && ($recordInfo->i_id > 0)) ? '' : '<span class="text-danger">*</span>') ?></label>
                                     <div class="position-relative">
                                         <input class="form-control pass-input" type="password" id="new_password" name="new_password" placeholder="{{ trans('messages.password') }}">
                                         <button type="button" class="showPass" onclick="showPassword(this)"> <i class="eye-slash-icon fa-regular fa-eye"></i></button>
@@ -49,7 +49,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group pass-section">
-                                    <label class="control-label">{{ trans("messages.confirm-password") }}<?php echo ((isset($recordInfo) && ($recordInfo->i_id > 0)) ? '' : '<span class="text-danger">*</span>') ?><span class="text-danger">*</span></label>
+                                    <label class="control-label">{{ trans("messages.confirm-password") }}<?php echo ((isset($recordInfo) && ($recordInfo->i_id > 0)) ? '' : '<span class="text-danger">*</span>') ?></label>
                                     <div class="position-relative">
                                         <input class="form-control pass-input" type="password" name="confirm_password" placeholder="{{ trans('messages.confirm-password') }}" autocomplete="new-password">
                                         <button type="button" class="showPass" onclick="showPassword(this)"> <i class="eye-slash-icon fa-regular fa-eye"></i></button>
