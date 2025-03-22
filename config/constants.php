@@ -63,6 +63,15 @@ $constants = [
 
 	'LOGIN_HISTORY_TABLE' => 'login_history',
 	'LOGIN_HISTORY_URL' => $portfolio['BACKEND_SITE_URL'] . 'login-history',
+
+	'INVOICE_URL' => $portfolio['BACKEND_SITE_URL'] . 'invoice',
+	'INVOICE_TABLE' => 'invoice_master',
+	'INVOICE_MASTER' => 'invoice',
+
+	'PROFILE_URL' => $portfolio['BACKEND_SITE_URL'] . 'profile',
+	'PROFILE_TABLE' => 'profile_master',
+	'SERVICE_TABLE' => 'service_master',
+	'EVENT_TABLE' => 'event_master',
 ];
 
 return array_merge($constants , $portfolio);

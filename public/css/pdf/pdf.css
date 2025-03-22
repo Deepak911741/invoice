@@ -1,0 +1,74 @@
+.body{
+    font-family: Arial, sans-serif;
+    background: #fff;
+    color: #000;
+}
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #002366;
+    color: white;
+    border-radius: 0 0 50px 0;
+    padding: 40px;
+}
+
+.company-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.company-info h1 {
+    font-size: 40px;
+    margin: 0;
+}
+
+.company-logo {
+    background: white;
+    color: black;
+    padding: 10px;
+    width: 150px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.business-info {
+    text-align: right;
+}
+
+
+.invoice-details {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 2px solid #000;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+th {
+    background: #ddd;
+}
+.summary {
+    padding: 20px;
+}
+.totals {
+    text-align: right;
+}
+.footer {
+    background: #002868;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

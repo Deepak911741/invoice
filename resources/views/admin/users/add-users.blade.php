@@ -34,7 +34,7 @@
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label class="control-label">{{ trans("messages.mobile-no") }}<span class="text-danger">*</span></label>
-                                    <input maxlength="10" class="form-control" type="text" name="mobile" placeholder="{{ trans('messages.mobile-no') }}" value="{{old('mobile', ( (isset($recordInfo) && (checkNotEmptyString($recordInfo->v_mobile))) ?  $recordInfo->v_mobile : '' ) )}}">
+                                    <input maxlength="10" class="form-control" type="text" name="mobile" onkeyup="onlyNumber(this);" onchange="onlyNumber(this);"  placeholder="{{ trans('messages.mobile-no') }}" value="{{old('mobile', ( (isset($recordInfo) && (checkNotEmptyString($recordInfo->v_mobile))) ?  $recordInfo->v_mobile : '' ) )}}">
                                 </div>
                             </div>
                             <div class="col-lg-3">
@@ -156,7 +156,7 @@
 
         if($.trim(value) != '' && $.trim(value) != null){
             $.ajax({
-                type: 'POST',
+                type: 'POST', 
                 dataType: 'json',
                 async: false,
                 url: '<?php echo config('constants.USERS_URL') .'/checkUniqueEmail' ?>',

@@ -21,9 +21,14 @@ class MY_controller extends Guest
     public $moduleName;
     public function __construct(){
         parent::__construct();
+		$this->isLoggedIn();
         $this->defaultPage = config('constants.DEFAULT_PAGE_INDEX');
     }
 
+
+	protected function isLoggedIn(){
+		// $this->middleware('checklogin');
+	}
 
     public function updateMasterStatus( $request , $tableName , $moduleName ){
     	$recordId = (!empty($request->record_id) ? (int)Message::decode($request->record_id) : 0);

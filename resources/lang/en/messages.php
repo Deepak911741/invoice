@@ -193,10 +193,18 @@ return [
 	'user' => 'User',
 
 	'invoce' => 'Invoice',
+	'add-invoce' => 'Add Invoce',
+	'update-invoce' => 'Update Invoce',
 	
 	'from-date' => 'From Date',
 	'to-date' => 'To Date',
 	'login-date-time' => 'Login Date & Time',
 	'ip-address' => 'IP Address',
 	'search-by' => 'Search By',
+	'services' => 'Services',
+	'events' => 'Events',
+	'shop-name' => 'Shop Name',
+	'total-payment' => 'Total Payment',
+	'advance-payment' => 'Advance Payment',
+	'total-due-payment' => 'Total Due Payment',
 ];

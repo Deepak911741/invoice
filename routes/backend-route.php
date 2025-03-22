@@ -8,7 +8,7 @@ if(config('constants.ONLY_ADMIN_PANEL') != false){
     Route::get('login', 'App\Http\Controllers\Login@index');
 }
 
-Route::group(['prefix' => config('constants.BACKEND_ROUTE_SLUG')], function(){
+Route::group(['middleware' => ['checklogin'], 'prefix' => config('constants.BACKEND_ROUTE_SLUG')], function () {
 
     Route::get('/', 'App\Http\Controllers\Dashbord@index');
     Route::get('/dashboard', 'App\Http\Controllers\Dashbord@index')->name('dashbord');
@@ -30,7 +30,20 @@ Route::group(['prefix' => config('constants.BACKEND_ROUTE_SLUG')], function(){
     // login history route
     Route::get('/login-history', 'App\Http\Controllers\Login_history@index');
     Route::post('/login-history/filter', 'App\Http\Controllers\Login_history@filter');
+    
+    // invoce route
+    Route::get('/invoice', 'App\Http\Controllers\InvoiceController@index');
+    Route::get('/invoice/create', 'App\Http\Controllers\InvoiceController@create');
+    Route::post('/invoice/add', 'App\Http\Controllers\InvoiceController@add');
+    Route::post('/invoice/filter', 'App\Http\Controllers\InvoiceController@filter');
+    Route::get('/invoice/edit/{id}', 'App\Http\Controllers\InvoiceController@edit')->name('invoice.edit');
+    Route::post('/invoice/updateStatus', 'App\Http\Controllers\InvoiceController@updateStatus');
+    Route::post('/invoice/delete/{id}', 'App\Http\Controllers\InvoiceController@delete');
+    Route::get('/invoice/exportPdf/{id}', 'App\Http\Controllers\InvoiceController@exportPdf')->name('invoice.exportPdf');
 
+    // profile route
+    Route::get('/profile/edit/{id}', 'App\Http\Controllers\ProfileController@edit');
+    Route::post('/profile/add', 'App\Http\Controllers\ProfileController@add');
 });
 
 Route::post('login/checkLogin', 'App\Http\Controllers\Login@checkLogin');

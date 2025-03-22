@@ -84,6 +84,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ config('constants.CHANGE_PASSWORD_URL') }}" title="{{ trans('messages.change-password') }}"><i class="fas fa-lock password"></i>{{ trans("messages.change-password") }}</a>
+                    <a class="dropdown-item" href="{{ config('constants.PROFILE_URL') . '/edit/' . ( session()->has('user_id') ? Message::encode(session()->get('user_id')) : 0 ) }}" title="{{ trans('messages.update-profile') }}"><i class="fa-solid fa-user fa-fw"></i>{{ trans("messages.update-profile") }}</a>
                     <a href="{{ config('constants.SITE_URL') .  'logout' }}" class="dropdown-item logout-btn text-dark text-decoration-none font-15 d-sm-none d-flex align-items-center"  title="{{ trans('messages.logout') }}"><i class="fas fa-sign-out-alt password"></i>{{ trans("messages.logout") }}</a>
                 </div>
             </div>
@@ -114,7 +115,7 @@
                 </li>
                 @endif
                 <li class="nav-items-class">
-                    <a href="" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.invoce') }}">
+                    <a href="{{ config('constants.INVOICE_URL') }}" class="nav-link d-flex align-items-center first-menu" title="{{ trans('messages.invoce') }}">
                     <i class="fas fa-file-invoice fa-fw"></i>
                         <span class="nav-text">{{ trans("messages.invoce") }}</span>
                     </a>
@@ -198,6 +199,13 @@
         if($(window).width() < 767 && $(".dataTables_wrapper").length > 0){
                 $.fn.DataTable.ext.pager.numbers_length = 5;
         } 
+    });
+
+    $(document).ready(function() {
+        $(".select2").select2({
+            placeholder: "Select Services",
+            allowClear: false
+        });
     });
 </script>
 </body>
