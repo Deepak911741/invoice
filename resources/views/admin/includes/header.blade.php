@@ -76,7 +76,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             @if(!empty(session()->get('role')) && session()->get('role') == config("constants.ROLE_ADMIN"))
-            <li class="nav-item ms-auto d-block me-3"><a class="nav-link" title="{{ trans('messages.download-backup') }}" href="{{ config('constants.DASHBOARD_URL') . '/backup' }}"><i class="fas fa-download fa-fw"></i> <span class="d-none d-sm-inline-block">{{ trans("messages.download-backup") }}</span><span class="d-sm-none d-inline-block">{{ trans("messages.backup") }}</span></a></li>
+            <li class="nav-item ms-auto d-block me-3"><a class="nav-link" title="{{ trans('messages.download-backup') }}" href="{{ config('constants.DASHBOARD_URL') . '/backup' }}"><i class="fas fa-download fa-fw"></i> <span class="d-none d-sm-inline-block">{{ trans("messages.download-backup") }}</span><span class="d-sm-none d-inline-block">{{ trans("messages.download-backup") }}</span></a></li>
             @endif
             <div class="dropdown admin-dropdown me-lg-0">
                 <a class="dropdown-toggle d-inline-block" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">         
@@ -84,7 +84,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ config('constants.CHANGE_PASSWORD_URL') }}" title="{{ trans('messages.change-password') }}"><i class="fas fa-lock password"></i>{{ trans("messages.change-password") }}</a>
-                    <a class="dropdown-item" href="{{ config('constants.PROFILE_URL') . '/edit/' . ( session()->has('user_id') ? Message::encode(session()->get('user_id')) : 0 ) }}" title="{{ trans('messages.update-profile') }}"><i class="fa-solid fa-user fa-fw"></i>{{ trans("messages.update-profile") }}</a>
+                    <a class="dropdown-item" href="{{ config('constants.PROFILE_URL') . '/edit/' . ( session()->has('user_id') ? Message::encode(session()->get('user_id')) : 0 ) }}" title="{{ trans('messages.update-profile') }}"><i class="fas fa-user fa-fw"></i>{{ trans("messages.update-profile") }}</a>
                     <a href="{{ config('constants.SITE_URL') .  'logout' }}" class="dropdown-item logout-btn text-dark text-decoration-none font-15 d-sm-none d-flex align-items-center"  title="{{ trans('messages.logout') }}"><i class="fas fa-sign-out-alt password"></i>{{ trans("messages.logout") }}</a>
                 </div>
             </div>

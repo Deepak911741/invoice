@@ -18,6 +18,7 @@ class Login_history_model extends My_model
     	parent::__construct();
     	$this->table = config('constants.LOGIN_HISTORY_TABLE');
     }
+	
 	public function loginInfo(){
 		return $this->belongsTo(Login_model::class , 'i_login_id');
 	}

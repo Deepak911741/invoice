@@ -33,7 +33,7 @@ class serviceModel extends My_model
         }
 
         $query = serviceModel::where('t_is_deleted', config('constants.INACTIVE_STATUS'));
-        $query = $this->commonWhereData($query , $whereData ,  $likeData , $additionalData);
+        $query = $this->commonWhereData($query , $whereData ,  $likeData , $additionalData);        
 
         if($this->countRecord != false) {
     		$data = $query->count();

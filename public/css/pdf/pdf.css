@@ -4,19 +4,16 @@
     color: #000;
 }
 .invoice-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    width: 100%;
     background-color: #002366;
     color: white;
-    border-radius: 0 0 50px 0;
-    padding: 40px;
+    border-bottom-right-radius: 50px;
+    border-collapse: collapse;
 }
 
-.company-info {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.invoice-header td {
+    padding: 40px;
+    vertical-align: middle;
 }
 
 .company-info h1 {
@@ -26,43 +23,72 @@
 
 .company-logo {
     background: white;
-    color: black;
     padding: 10px;
     width: 150px;
+    height: 100px;
     text-align: center;
-    font-weight: bold;
+}
+
+.company-logo img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .business-info {
     text-align: right;
 }
 
+.business-info p {
+    margin: 5px 0;
+}
 
 .invoice-details {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    border-bottom: 2px solid #000;
-}
-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
 }
-th, td {
-    border: 1px solid black;
-    padding: 10px;
-    text-align: center;
+
+table.invoice-details {
+    margin: 40px;
 }
-th {
-    background: #ddd;
+
+.invoice-details td {
+    vertical-align: top;
+    width: 48%; 
+    border: none;
+    padding: 0 20px;
 }
+
+.service-header {
+    width: 88%;
+    margin: 20px auto; 
+    border-collapse: collapse; 
+    border: 1px solid black; 
+}
+
+.service-header th, 
+.service-header td {
+    border: 1px solid black; 
+    padding: 15px; 
+    text-align: center; 
+}
+
+.service-header th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+
 .summary {
-    padding: 20px;
+    width: 88%;
+    margin: 20px auto; 
+    padding: 10px;
 }
 .totals {
     text-align: right;
+    margin: 30px;
+
 }
+
 .footer {
     background: #002868;
     color: white;
@@ -71,4 +97,10 @@ th {
     position: fixed;
     width: 100%;
     bottom: 0;
+}
+
+.line{
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    width: 100%;
 }

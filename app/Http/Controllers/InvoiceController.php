@@ -191,7 +191,7 @@ class InvoiceController extends MY_controller
                 
                 $rowData['action'] = '<div class="actions-col-div">';
                 $rowData['action'] .= '<a href="'. route('invoice.edit', $encodeRecordId ).'" title="'.trans("messages.edit").'" class="btn edit-btn action-btn btn-sm edit-btn"><i class="fa-solid fa-pencil"></i></a>';
-                $rowData['action'] .= '<a href="'. route('invoice.exportPdf', $encodeRecordId ).'" title="'.trans("messages.view").'" class="btn edit-btn action-btn btn-sm edit-btn"><i class="fa-solid fa-eye" style="color: #FFD43B;"></i></a>';
+                $rowData['action'] .= '<a href="'. route('invoice.exportPdf', $encodeRecordId ).'" title="'.trans("messages.view").'" target="_blank" class="btn edit-btn action-btn btn-sm edit-btn"><i class="fa-solid fa-eye" style="color: #FFD43B;"></i></a>';
                 $rowData['action'] .= '<button title="'.trans("messages.delete").'" data-record-id="'.$encodeRecordId.'" data-module-name="'.config('constants.INVOICE_MASTER').'" data-msg-module-name="'.$this->moduleName.'" onclick="deleteRecord(this);" type="button" class="btn action-btn btn-sm delete-btn"><i class="fa-solid fa-trash"></i></button>';
                 $rowData['action'] .= '</div>';
                 
@@ -281,11 +281,16 @@ class InvoiceController extends MY_controller
                 $errorFound = false;
                 
                 $data['recordInfo'] = $recordInfo;
-                $data['pageTitle'] = trans ( 'messages.update-invoce');
-                $data['showConfirmBox'] = $this->showConfirmBox;
-                $whereData['i_login_id'] = (session()->has('user_id') && !empty(session()->get('user_id')) ? session()->get('user_id') : '');
-                $data['services'] = (new serviceModel)->getRecordDetails($whereData);
-                $data['events'] =  (new eventModel)->getRecordDetails($whereData);
+                if(!empty($recordInfo->i_service_ids)) {
+                    $serviceIds = explode(',', $recordInfo->i_service_ids);
+                    $data['services'] = ServiceModel::whereIn('i_id', $serviceIds)->where('t_is_deleted', config('constants.INACTIVE_STATUS'))->get();
+                } 
+
+                if(!empty($recordInfo->i_event_ids)){
+                    $eventsId = explode(',', $recordInfo->i_event_ids);
+                    $data['events'] = eventModel::whereIn('i_id', $eventsId)->where('t_is_deleted', config('constants.INACTIVE_STATUS'))->get();
+                }
+                
                 return $this->samplePDF($data);
             }
         }
@@ -313,7 +318,6 @@ class InvoiceController extends MY_controller
 		
 		$html = view ('admin.pdf.invoice-pdf')->with($data)->render();
         
-		//  dd($html);
 		$mpdf = new \Mpdf\Mpdf([
 			'mode' => 'utf-8',
 			'format' => 'A4',
@@ -331,7 +335,7 @@ class InvoiceController extends MY_controller
 		]);
 
 		$stylesheet = file_get_contents(public_path('css/pdf/pdf.css')); 
-		$fileName = "Sample PDf";
+		$fileName = "invoice-" . date('d-m-Y');
 	
 		$mpdf->WriteHTML($stylesheet, \Mpdf\HTMLParserMode::HEADER_CSS);
 		$mpdf->SetTitle($fileName);

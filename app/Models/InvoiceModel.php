@@ -17,6 +17,14 @@ class InvoiceModel extends My_model
         $this->table = config('constants.INVOICE_TABLE');
     }
 
+    public function profileDetails(){
+        return $this->belongsTo(ProfileModel::class , 'i_login_id');
+    }
+
+    public function loginInfo(){
+		return $this->belongsTo(Login_model::class , 'i_login_id');
+	}
+
     public function getRecordDetails($whereData = [], $likeData = [], $additionalData = []){
         if(isset($whereData['singleRecord'])){
             $this->singleRecord = true;
